@@ -1,0 +1,1 @@
+g++ -std=c++17 -o ifelse.exe ifelse.cpp && ifelse.exe < input.txt > output.txt
