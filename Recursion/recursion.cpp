@@ -3,13 +3,8 @@ using namespace std;
 
 int cnt = 0;
 void print(){
-  if(cnt == 3) return;
+  if(cnt == 3) return;  //base condition
   cout << cnt << endl;
   cnt++;
-  print();
-}
-
-int main(){
-  print();
-  return 0;
+  print(); //recursive call
 }
