@@ -40,6 +40,12 @@ int sumNF(int n) {
   return n + sumNF(n-1);
 }
 
+//functional way
+int factorialF(int n){
+  if(n == 0) return 1;
+  return n * factorial(n-1);
+}
+
 int main(){
   string name = "Pratham";
   int N = 3;
@@ -47,6 +53,7 @@ int main(){
   // printonetoN(N, 1);
   // printNtoone(N);
   // sumN(0, N);
-  cout << sumNF(N);
+  // cout << sumNF(N);
+  cout << factorialF(N);
   return 0;
 }
