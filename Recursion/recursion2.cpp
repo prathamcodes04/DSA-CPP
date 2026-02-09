@@ -59,13 +59,13 @@ bool printSubsequencesSumKcase2(int i, int arr[], int n, vector<int> &ds, int su
   }
   ds.push_back(arr[i]);
   sum += arr[i];
-  if(printSubsequencesSumKcase2(i + 1, arr, n, ds, sum, k)){ //pick element
+  if(printSubsequencesSumKcase2(i + 1, arr, n, ds, sum, k) == true){ //pick element
     return true;
   }
 
   sum -= arr[i];
   ds.pop_back(); 
-  if(printSubsequencesSumKcase2(i + 1, arr, n, ds, sum, k)){ //not pick(backtrack)
+  if(printSubsequencesSumKcase2(i + 1, arr, n, ds, sum, k) == true){ //not pick(backtrack)
     return true;
   }
 
