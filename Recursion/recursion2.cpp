@@ -72,6 +72,25 @@ bool printSubsequencesSumKcase2(int i, int arr[], int n, vector<int> &ds, int su
   return false;
 }
 
+//count the number of subsequences whose sum = k
+int printSubsequencescase3(int i, int arr[], int n, int sum, int k){
+  //condition not satisfied
+  //strictly done if array contains positives only
+  // if(k > sum) return 0;
+  if(i == n){
+    //condtion satisfied
+    if(sum == k) return 1;
+    //condition not satisfied
+    else return 0;
+  }
+  sum += arr[i];
+  int l = printSubsequencescase3(i + 1, arr, n, sum, k); //pick element
+
+  sum -= arr[i];
+  int r = printSubsequencescase3(i + 1, arr, n, sum, k); //not pick(backtrack)
+
+  return l + r;
+}
 
 int main(){
   // cout << fibonaci(5);
@@ -83,6 +102,7 @@ int main(){
   // printSubsequences(0, ds, arr, n);
   int k = 2;
   // printSubsequencesSumK(0, arr, n, ds, 0, k);
-  printSubsequencesSumKcase2(0, arr, n, ds, 0, k);
+  // printSubsequencesSumKcase2(0, arr, n, ds, 0, k);
+  cout << printSubsequencescase3(0, arr, n, 0, k);
   return 0;
 }
