@@ -27,12 +27,32 @@ void printSubsequences(int idx, vector<int> &ds, int arr[], int n){
   printSubsequences(idx + 1, ds, arr, n);
 }
 
+void printSubsequencesSumK(int i, int arr[], int n, vector<int> &ds, int sum, int k){
+  if(i == n){
+    if(sum == k){
+      for(auto it : ds) cout << it << " ";
+      cout << endl;
+    }
+    return;
+  }
+  ds.push_back(arr[i]);
+  sum += arr[i];
+  printSubsequencesSumK(i + 1, arr, n, ds, sum, k); //pick
+
+  sum -= arr[i];
+  ds.pop_back(); 
+  printSubsequencesSumK(i + 1, arr, n, ds, sum, k); //not pick
+}
+
 int main(){
   // cout << fibonaci(5);
   // cout << fibonaci(0);
-  int arr[] = {3,1,2};
+  // int arr[] = {3,1,2};
+  int arr[] = {1,2,1};
   int n = 3;
   vector<int> ds;
-  printSubsequences(0, ds, arr, n);
+  // printSubsequences(0, ds, arr, n);
+  int k = 2;
+  printSubsequencesSumK(0, arr, n, ds, 0, k);
   return 0;
 }
