@@ -5,9 +5,11 @@ int main(){
   cin >> s;
 
   //precompute
-  int hash[26] = {0};
+  // int hash[26] = {0};
+  int hash[256] = {0};
   for(int i = 0; i < s.size(); i++){
-    hash[s[i] - 'a']++;
+    // hash[s[i] - 'a']++;
+    hash[s[i]]++;
   }
 
   int q;
@@ -16,7 +18,8 @@ int main(){
     char c;
     cin  >> c;
     //fetch
-    cout << hash[c - 'a'] << endl;
+    // cout << hash[c - 'a'] << endl;
+    cout << hash[c] << endl;
   }
   return 0;
 }

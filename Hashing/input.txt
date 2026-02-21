@@ -1,7 +1,9 @@
-abcdabehf
-5
+abcdabehfAACC
+7
 a
 g
 h
 b
 c
+A
+C
