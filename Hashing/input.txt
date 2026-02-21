@@ -1,9 +1,8 @@
-abcdabehfAACC
 7
-a
-g
-h
-b
-c
-A
-C
+1 2 3 1 3 2 12
+5
+1
+2
+3
+4
+12
