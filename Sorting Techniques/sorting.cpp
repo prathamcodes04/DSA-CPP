@@ -32,8 +32,16 @@ void bubble_sort(int n, int arr[]){
   }
 }
 
-void insertion_sort(int n, arr[]){
-  
+void insertion_sort(int n, int arr[]){
+  for(int i = 0; i < n; i++){
+    int j = i;
+    while(j > 0 && arr[j-1] > arr[j]){
+      //swap
+      swap(arr[j-1], arr[j]);
+
+      j--; //as we are checking elements backwards
+    }
+  }
 }
 
 int main(){
