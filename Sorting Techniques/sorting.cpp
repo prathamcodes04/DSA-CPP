@@ -63,6 +63,25 @@ void insertion_sort(int n, int arr[]){
   }
 }
 
+void recursive_insertion_sort(int n, int arr[]){
+  //base case
+  if(n <= 1) return;
+
+  //recursively sort n-1 elements
+  recursive_insertion_sort(n-1, arr);
+
+  int last = arr[n-1];
+  int j = n-2;
+
+  while(j >= 0 && arr[j] > last){
+    swap(arr[j+1], arr[j]);
+    j--;
+  }
+
+
+
+}
+
 void merge(int arr[], int low, int mid, int high){
   //defining temporary array to store elements
   vector <int> temp;
@@ -114,8 +133,9 @@ int main(){
   for(int i = 0; i < n; i++) cin >> arr[i];
   // selection_sort(n , arr);
   // bubble_sort(n , arr);
-  recursive_bubble_sort(n , arr);
+  // recursive_bubble_sort(n , arr);
   // insertion_sort(n , arr);
+  recursive_inerstion_sort(n , arr);
   // merge_sort(arr, 0, n-1);
   for(int i = 0; i < n; i++) cout << arr[i] << " ";
   return 0;
