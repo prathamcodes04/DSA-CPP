@@ -32,6 +32,25 @@ void bubble_sort(int n, int arr[]){
   }
 }
 
+void recursive_bubble_sort(int n, int arr[]){
+  //base case
+  if(n == 1) return;
+  bool swapped = false;
+
+  for(int i = 0; i < n; i++){
+    if(arr[i] > arr[i + 1]){
+      swap(arr[i], arr[i+1]);
+      swapped = true;
+    }
+  }
+  //if no swap array already sorted
+  if(!swapped) return;
+  // cout << "runs\n";
+
+  //recursive call
+  recursive_bubble_sort(n-1, arr);
+}
+
 void insertion_sort(int n, int arr[]){
   for(int i = 0; i < n; i++){
     int j = i;
@@ -95,8 +114,9 @@ int main(){
   for(int i = 0; i < n; i++) cin >> arr[i];
   // selection_sort(n , arr);
   // bubble_sort(n , arr);
+  recursive_bubble_sort(n , arr);
   // insertion_sort(n , arr);
-  merge_sort(arr, 0, n-1);
+  // merge_sort(arr, 0, n-1);
   for(int i = 0; i < n; i++) cout << arr[i] << " ";
   return 0;
 }
