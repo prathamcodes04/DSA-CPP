@@ -126,6 +126,35 @@ void merge_sort(int arr[], int low, int high){
   merge(arr, low, mid, high);
 }
 
+int partition(int arr[], int low, int high){
+  //taking first element as pivot
+  int pivot = arr[low];
+  int i = low;
+  int j = high;
+  while(i < j){
+    while(arr[i] <= pivot && i <= high - 1){
+      i++;
+    }
+    while(arr[j] > pivot && j >= low + 1){
+      j--;
+    }
+    if(i < j) swap(arr[i], arr[j]);
+  }
+  swap(arr[low], arr[j]);
+  return j;
+}
+
+void quick_sort(int arr[], int low, int high){
+  //when sub array has exactly one element return
+  if(low < high){
+    //finding partition index
+    //pindex = partition index
+    int pindex = partition(arr, low, high);
+    quick_sort(arr, low, pindex - 1);
+    quick_sort(arr, pindex + 1, high);
+  }
+}
+
 int main(){
   int n;
   cin >> n;
@@ -135,8 +164,9 @@ int main(){
   // bubble_sort(n , arr);
   // recursive_bubble_sort(n , arr);
   // insertion_sort(n , arr);
-  recursive_inerstion_sort(n , arr);
+  // recursive_inerstion_sort(n , arr);
   // merge_sort(arr, 0, n-1);
+  quick_sort(arr, 0, n-1);
   for(int i = 0; i < n; i++) cout << arr[i] << " ";
   return 0;
 }
