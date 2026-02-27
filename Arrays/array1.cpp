@@ -50,8 +50,12 @@ int secondSmallest(int arr[], int n){
 }
 
 int main(){
-  int n = 5;
-  int arr[5] = {1,2,3,4,5};
+  int n = 5; 
+  // int n = 4;
+  // int n = 1;
+  int arr[5] = {1,2,3,4,5}; 
+  // int arr[4] = {1,1,1,1}; 
+  int arr[1] = {1};
   // cout << largestElement(arr, n);
   // cout << secondLargest(arr, n);
   cout << secondSmallest(arr, n);
