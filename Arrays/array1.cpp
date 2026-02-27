@@ -61,22 +61,37 @@ int checkSorted(int arr[], int n){
 
 //remove duplicates in sorted array
 int removeDuplicates(int arr[], int n){
-  set<int> s;
-  
+  if(n == 0) return 0;
+  int i = 0; //first unique element
+  for(int j = 1; j < n; j++){
+    if(arr[j] != arr[i]){
+      //take first position
+      arr[i+1] = arr[j];
+      i++;
+    }
+  }
+  return i+1;//length of unique elements
 }
 
 int main(){
-  int n = 5; 
+  // int n = 5; 
+  int n = 7; 
   // int n = 4;
   // int n = 1;
   // int arr[5] = {1,2,3,4,5}; 
   // int arr[5] = {5,3,1,2,4}; 
-  int arr[5] = {1,1,2,2,2,3,3}; 
+  int arr[7] = {1,1,2,2,2,3,3}; 
   // int arr[4] = {1,1,1,1}; 
   // int arr[1] = {1};
   // cout << largestElement(arr, n);
   // cout << secondLargest(arr, n);
   // cout << secondSmallest(arr, n);
-  cout << checkSorted(arr, n);
+  // cout << checkSorted(arr, n);
+  int len = removeDuplicates(arr, n);
+  cout << "Length of array after removing duplicated: " << len;
+  cout << endl;
+  for(int i = 0; i < len; i++){
+    cout << arr[i] << " ";
+  }
   return 0;
 }
