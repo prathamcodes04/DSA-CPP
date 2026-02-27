@@ -49,15 +49,34 @@ int secondSmallest(int arr[], int n){
   return ssmallest;
 }
 
+//check if the array is sorted
+int checkSorted(int arr[], int n){
+  for(int i = 1; i < n; i++){
+    if(arr[i] < arr[i-1]){
+      return false;
+    }
+  }
+  return true;
+}
+
+//remove duplicates in sorted array
+int removeDuplicates(int arr[], int n){
+  set<int> s;
+  
+}
+
 int main(){
   int n = 5; 
   // int n = 4;
   // int n = 1;
-  int arr[5] = {1,2,3,4,5}; 
+  // int arr[5] = {1,2,3,4,5}; 
+  // int arr[5] = {5,3,1,2,4}; 
+  int arr[5] = {1,1,2,2,2,3,3}; 
   // int arr[4] = {1,1,1,1}; 
-  int arr[1] = {1};
+  // int arr[1] = {1};
   // cout << largestElement(arr, n);
   // cout << secondLargest(arr, n);
-  cout << secondSmallest(arr, n);
+  // cout << secondSmallest(arr, n);
+  cout << checkSorted(arr, n);
   return 0;
 }
