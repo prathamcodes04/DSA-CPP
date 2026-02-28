@@ -82,12 +82,47 @@ void rotateleft(int arr[], int n){
   arr[n-1] = temp; //placing temp at last index
 }
 
+//left rotate the array by k places - bruteforce
+void leftrotatekplaces(int arr[], int n, int k){
+  //to avoid unnecessary rotations
+  k = k % n;
+
+  vector<int> temp;
+
+  //storing k elements
+  for(int i = 0; i < k; i++){
+    temp.push_back(arr[i]);
+  }
+  //shifting remainin elements to left
+  for(int i = k; i < n; i++){
+    arr[i - k] = arr[i];
+  }
+  //copy temp to end
+  for(int i = 0; i < k; i++){
+    arr[n - k + i] = temp[i];
+  }
+}
+
+//left rotate the array by K places - optimal solution
+void rotateKplaces(int arr[], int n, int K){
+  reverse(arr, arr + K);
+  reverse(arr + K, arr + n);
+  reverse(arr, arr + n);
+}
+
 int main(){
-  int n = 5; 
+  int n = 7;
+  int arr[7] = {1,2,3,4,5,6,7};
+  int k = 3;
+  leftrotatekplaces(arr, n, k);
+  for(int i = 0; i < n; i++){
+    cout << arr[i] << " ";
+  }
+  // int n = 5; 
   // int n = 7; 
   // int n = 4;
   // int n = 1;
-  int arr[5] = {1,2,3,4,5}; 
+  // int arr[5] = {1,2,3,4,5}; 
   // int arr[5] = {5,3,1,2,4}; 
   // int arr[7] = {1,1,2,2,2,3,3}; 
   // int arr[4] = {1,1,1,1}; 
@@ -99,9 +134,23 @@ int main(){
   // int len = removeDuplicates(arr, n);
   // cout << "Length of array after removing duplicated: " << len;
   // cout << endl;
-  rotateleft(arr, n);
-  for(int i = 0; i < n; i++){
-    cout << arr[i] << " ";
-  }
+  // rotateleft(arr, n);
+  // for(int i = 0; i < n; i++){
+  //   cout << arr[i] << " ";
+  // }
+
+  //for rotate by k places
+  // int n;
+  // cin >> n;
+  // int arr[n];
+  // for(int i = 0; i < n; i++){
+  //   cin >> arr[i];
+  // }
+  // int k;
+  // cin >> k;
+  // rotateKplaces(arr, n, k);
+  // for(int i = 0; i < n; i++){
+  //   cout << arr[i] << " ";
+  // }
   return 0;
 }
