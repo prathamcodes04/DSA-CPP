@@ -104,20 +104,82 @@ void leftrotatekplaces(int arr[], int n, int k){
 }
 
 //left rotate the array by K places - optimal solution
-void rotateKplaces(int arr[], int n, int K){
-  reverse(arr, arr + K);
-  reverse(arr + K, arr + n);
+void rotateKplaces(int arr[], int n, int k){
+  k = k % n;
+  reverse(arr, arr + k);
+  reverse(arr + k, arr + n);
   reverse(arr, arr + n);
 }
 
+//move all zeros to the end of the array 
+void moveallzerostoend(int arr[], int n){
+  // brute force
+
+  // vector<int> temp;
+
+  // //pick non zero number and put it in temp 
+  // for(int i = 0; i < n; i++){
+  //   if(arr[i] != 0){
+  //     temp.push_back(arr[i]);
+  //   }
+  // }
+  // //put non zero elements in front
+  // int nz = temp.size();
+  // for(int i = 0; i < nz; i++){
+  //   arr[i] = temp[i];
+  // }
+  // //replacing empty indexes with 0
+  // for(int i = nz; i < n; i++){
+  //   arr[i] = 0;
+  // }
+
+  //optimal solution
+  //two pointer approach
+  // int j = 0;
+  // for(int i = 0; i < n; i++){
+  //   if(arr[i] != 0){
+  //     swap(arr[i], arr[j]);
+  //     j++;
+  //   }
+  // }
+
+  //or
+  //to store index of 0 element
+  int j = -1;
+
+  //finding first 0 element
+  for(int i = 0; i < n; i++){
+    if(arr[i] == 0){
+      j = i;
+      break;
+    }
+  }
+  //if their is no zero in array
+  if(j == -1) return;
+
+  //moving non zero element forward
+  for(int i = j + 1; i < n; i++){
+    if(arr[i] != 0){
+      swap(arr[i], arr[j]);
+      j++;
+    }
+  }
+}
+
 int main(){
-  int n = 7;
-  int arr[7] = {1,2,3,4,5,6,7};
-  int k = 3;
-  leftrotatekplaces(arr, n, k);
+  int n = 10;
+  int arr[10] = {1,0,2,3,2,0,0,4,5,1};
+  moveallzerostoend(arr, n);
   for(int i = 0; i < n; i++){
     cout << arr[i] << " ";
   }
+  // int n = 7;
+  // int arr[7] = {1,2,3,4,5,6,7};
+  // int k = 3;
+  // leftrotatekplaces(arr, n, k);
+  // for(int i = 0; i < n; i++){
+  //   cout << arr[i] << " ";
+  // }
   // int n = 5; 
   // int n = 7; 
   // int n = 4;
