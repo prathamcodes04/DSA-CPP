@@ -73,24 +73,34 @@ int removeDuplicates(int arr[], int n){
   return i+1;//length of unique elements
 }
 
+//left rotate the array by one
+void rotateleft(int arr[], int n){
+  int temp = arr[0]; //storing first element in temp
+  for(int i = 1; i < n; i++){
+    arr[i-1] = arr[i];
+  }
+  arr[n-1] = temp; //placing temp at last index
+}
+
 int main(){
-  // int n = 5; 
-  int n = 7; 
+  int n = 5; 
+  // int n = 7; 
   // int n = 4;
   // int n = 1;
-  // int arr[5] = {1,2,3,4,5}; 
+  int arr[5] = {1,2,3,4,5}; 
   // int arr[5] = {5,3,1,2,4}; 
-  int arr[7] = {1,1,2,2,2,3,3}; 
+  // int arr[7] = {1,1,2,2,2,3,3}; 
   // int arr[4] = {1,1,1,1}; 
   // int arr[1] = {1};
   // cout << largestElement(arr, n);
   // cout << secondLargest(arr, n);
   // cout << secondSmallest(arr, n);
   // cout << checkSorted(arr, n);
-  int len = removeDuplicates(arr, n);
-  cout << "Length of array after removing duplicated: " << len;
-  cout << endl;
-  for(int i = 0; i < len; i++){
+  // int len = removeDuplicates(arr, n);
+  // cout << "Length of array after removing duplicated: " << len;
+  // cout << endl;
+  rotateleft(arr, n);
+  for(int i = 0; i < n; i++){
     cout << arr[i] << " ";
   }
   return 0;
