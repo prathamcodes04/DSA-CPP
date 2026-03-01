@@ -176,11 +176,69 @@ int linearsearch(int arr[], int n, int num){
   return -1; //element not found
 }
 
+//union of two arrays
+void unionoftwoarrays(int arr1[], int arr2[], int n1, int n2){
+  //brute force 
+
+  //define set data structure
+  set<int> st;
+  //inserting first array
+  for(int i = 0; i < n1; i++){
+    st.insert(arr1[i]);
+  }
+  //insert second array
+  for(int i = 0; i < n2; i++){
+    st.insert(arr2[i]);
+  }
+  //print union
+  for(auto it : st){
+    cout << it << " ";
+  }
+
+  //optimal approach
+  int i = 0;
+  int j = 0; 
+  //storing elments in union array
+  vector<int> unionarr;
+  while(i < n1 && j < n2){
+    if(arr1[i] <= arr2[j]){
+      if(unionarr.size() == 0 || unionarr.back() != arr1[i]){
+        unionarr.push_back(arr1[i]);
+      }
+      i++;
+    }
+    else{
+      if(unionarr.size() == 0 || unionarr.back() != arr2[j]){
+        unionarr.push_back(arr2[j]);
+      }
+      j++;
+    }
+  }
+  while(i < n1){
+    if(unionarr.size() == 0 || unionarr.back() != arr1[i]){
+      unionarr.push_back(arr1[i]);
+    }
+    i++;
+  }
+  while(j < n2){
+    if(unionarr.size() == 0 || unionarr.back() != arr2[j]){
+      unionarr.push_back(arr2[j]);
+    }
+    j++;
+  }
+}
+
 int main(){
-  int n = 5;
-  int arr[5] = {6,7,8,4,1};
-  int num = 4;
-  cout << linearsearch(arr, n, num);
+  int n1 = 6;
+  int n2 = 6;
+  int arr1[n1] = {1,1,2,3,4,5};
+  int arr2[n2] = {2,3,4,4,5,6};
+  unionoftwoarrays(arr1, arr2, n1, n2);
+
+  // int n = 5;
+  // int arr[5] = {6,7,8,4,1};
+  // int num = 4;
+  // cout << linearsearch(arr, n, num);
   // int n = 10;
   // int arr[10] = {1,0,2,3,2,0,0,4,5,1};
   // moveallzerostoend(arr, n);
