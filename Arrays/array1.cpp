@@ -166,13 +166,27 @@ void moveallzerostoend(int arr[], int n){
   }
 }
 
-int main(){
-  int n = 10;
-  int arr[10] = {1,0,2,3,2,0,0,4,5,1};
-  moveallzerostoend(arr, n);
+//linear search
+int linearsearch(int arr[], int n, int num){
   for(int i = 0; i < n; i++){
-    cout << arr[i] << " ";
+    if(arr[i] == num){
+      return i;
+    }
   }
+  return -1; //element not found
+}
+
+int main(){
+  int n = 5;
+  int arr[5] = {6,7,8,4,1};
+  int num = 4;
+  cout << linearsearch(arr, n, num);
+  // int n = 10;
+  // int arr[10] = {1,0,2,3,2,0,0,4,5,1};
+  // moveallzerostoend(arr, n);
+  // for(int i = 0; i < n; i++){
+  //   cout << arr[i] << " ";
+  // }
   // int n = 7;
   // int arr[7] = {1,2,3,4,5,6,7};
   // int k = 3;
