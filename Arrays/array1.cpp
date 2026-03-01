@@ -181,27 +181,31 @@ void unionoftwoarrays(int arr1[], int arr2[], int n1, int n2){
   //brute force 
 
   //define set data structure
-  set<int> st;
-  //inserting first array
-  for(int i = 0; i < n1; i++){
-    st.insert(arr1[i]);
-  }
-  //insert second array
-  for(int i = 0; i < n2; i++){
-    st.insert(arr2[i]);
-  }
-  //print union
-  for(auto it : st){
-    cout << it << " ";
-  }
+  // set<int> st;
+  // //inserting first array
+  // for(int i = 0; i < n1; i++){
+  //   st.insert(arr1[i]);
+  // }
+  // //insert second array
+  // for(int i = 0; i < n2; i++){
+  //   st.insert(arr2[i]);
+  // }
+  // //print union
+  // for(auto it : st){
+  //   cout << it << " ";
+  // }
 
   //optimal approach
-  int i = 0;
-  int j = 0; 
-  //storing elments in union array
-  vector<int> unionarr;
-  while(i < n1 && j < n2){
+  int i = 0; //pointer for arr1
+  int j = 0; //pointer for arr2
+  vector<int> unionarr; //storing union elements
+  while(i < n1 && j < n2){ //run untill one array finishes
+    //pass smaller element first and check for duplicates
     if(arr1[i] <= arr2[j]){
+      //to avoid duplicates
+      //if vector is empty insert
+      //it last inserted element is not equal insert
+      //if equal skip
       if(unionarr.size() == 0 || unionarr.back() != arr1[i]){
         unionarr.push_back(arr1[i]);
       }
@@ -214,17 +218,23 @@ void unionoftwoarrays(int arr1[], int arr2[], int n1, int n2){
       j++;
     }
   }
+  //remaining elements of arr1 if arr2 gets exhausted
   while(i < n1){
     if(unionarr.size() == 0 || unionarr.back() != arr1[i]){
       unionarr.push_back(arr1[i]);
     }
     i++;
   }
+  //remaining elements of arr2 if arr1 gets exhausted
   while(j < n2){
     if(unionarr.size() == 0 || unionarr.back() != arr2[j]){
       unionarr.push_back(arr2[j]);
     }
     j++;
+  }
+  //printing union array
+  for(auto it : unionarr){
+    cout << it << " ";
   }
 }
 
