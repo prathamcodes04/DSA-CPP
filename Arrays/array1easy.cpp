@@ -238,12 +238,122 @@ void unionoftwoarrays(int arr1[], int arr2[], int n1, int n2){
   }
 }
 
+//intersection of two arrays
+void intersectionoftwoarrays(int arr1[], int arr2[], int n1, int n2){
+  //bruteforce
+  // vector<int> ans;
+  // int vis[n2] = {0};
+  // for(int i = 0; i < n1; i++){
+  //   for(int j = 0; j < n2; j++){
+  //     if(arr1[i] == arr2[j] && vis[j] == 0){
+  //       ans.push_back(arr1[i]);
+  //       vis[j] = 1;
+  //       break;
+  //     }
+  //     if(arr2[j] > arr1[i]) break;
+  //   }
+  // }
+  // for(auto it : ans){
+  //   cout << it << " ";
+  // }
+
+  //optimal solution
+  int i = 0; 
+  int j = 0;
+  vector<int> ans;
+
+  while(i < n1 && j < n2){
+    if(arr1[i] < arr2[j]){
+      i++;
+    }
+    else if(arr2[j] < arr1[i]){
+      j++;
+    }
+    else{
+      ans.push_back(arr1[i]);
+      i++;
+      j++;
+    }
+  }
+  for(auto it : ans){
+    cout << it << " ";
+  }
+}
+
+//finding missing number in an array
+int missingnum(int arr[], int n){
+  //brute force
+
+  //check every number from 0 to n-1
+  // for(int i = 0; i < n; i++){
+    // //assumng if current i number is not found
+    // int flag = 0;
+    // //traversing entire array 
+    // for(int j = 0; j < n; j++){
+    //   //checking if i exists
+    //   if(arr[j] == i){
+    //     //marking it found if exists
+    //     flag = 1;
+    //     break;
+    //   }
+    // }
+    // //if not exists reutrn i
+    // if(flag == 0) return i;
+  // }
+
+  //better approach
+  //using hashing 
+  
+  //create a hash array
+  // int hash[n+1] = {0};
+
+  // //traverse original array
+  // for(int i = 0; i < n; i++){
+  //   //marking present number as 1
+  //   hash[arr[i]] = 1;
+  // }
+
+  // //now checking 0 to n in hash array
+  // for(int i = 0; i <= n; i++){
+  //   //checking if number not marked
+  //   if(hash[i] == 0){
+  //     return i;
+  //   }
+  // }
+
+  //optimal solution
+
+  //using XOR
+
+  // int xor1 = 0; //to store xor of elements from 0 to n
+  // int xor2 = 0; //to store xor of array elements
+  // for(int i = 0; i < n-1; i++){ //array has one missing element so n-1
+  //   xor2 = xor2 ^ arr[i]; //xor of all array elements
+  //   xor1 = xor1 ^ (i+1); //xor of numbers from 0 to n
+  // }
+  // xor1 = xor1 ^ n; //include n in xor
+  // return xor1 ^ xor2; //return missing number
+
+  //using sum
+
+  int totalsum = (n*(n+1))/2;
+  int arrsum = 0;
+  for(int i = 0; i < n; i++){
+    arrsum += arr[i];
+  }
+  return totalsum - arrsum;
+}
+
 int main(){
-  int n1 = 6;
-  int n2 = 6;
-  int arr1[n1] = {1,1,2,3,4,5};
-  int arr2[n2] = {2,3,4,4,5,6};
-  unionoftwoarrays(arr1, arr2, n1, n2);
+  int n = 5;
+  int arr[5] = {1,2,4,5};
+  cout << missingnum(arr, n);
+  // int n1 = 6;
+  // int n2 = 6;
+  // int arr1[n1] = {1,1,2,3,4,5};
+  // int arr2[n2] = {2,3,4,4,5,6};
+  // unionoftwoarrays(arr1, arr2, n1, n2);
+  // intersectionoftwoarrays(arr1, arr2, n1, n2);
 
   // int n = 5;
   // int arr[5] = {6,7,8,4,1};
