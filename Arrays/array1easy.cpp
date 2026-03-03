@@ -344,10 +344,34 @@ int missingnum(int arr[], int n){
   return totalsum - arrsum;
 }
 
+//mamximum consecutive ones
+int maxones(int arr[], int n){
+  int maxi = 0;
+  int cnt = 0;
+  for(int i = 0; i < n; i++){
+    if(arr[i] == 1){
+      cnt++;
+      maxi = max(maxi, cnt);
+    }else{
+      cnt = 0;
+    }
+  }
+  return maxi;
+}
+
+//find the number that appears once, and the other numbers twice
+int oncetwice(int arr[], int n){
+  
+}
+
 int main(){
-  int n = 5;
-  int arr[5] = {1,2,4,5};
-  cout << missingnum(arr, n);
+  int n = 7;
+  int arr[7] = {1,1,2,3,3,4,4};
+  cout << oncetwice(arr, n);
+  // int arr[9] = {1,1,0,1,1,1,0,1,1};
+  // cout << maxones(arr, n);
+  // int arr[5] = {1,2,4,5};
+  // cout << missingnum(arr, n);
   // int n1 = 6;
   // int n2 = 6;
   // int arr1[n1] = {1,1,2,3,4,5};
