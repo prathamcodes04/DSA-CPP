@@ -361,7 +361,48 @@ int maxones(int arr[], int n){
 
 //find the number that appears once, and the other numbers twice
 int oncetwice(int arr[], int n){
-  
+  //brute force
+
+  // for(int i = 0; i < n; i++){
+  //   int number = arr[i];
+  //   int cnt = 0;
+  //   for(int j = 0; j < n; j++){
+  //     if(arr[j] == number){
+  //       cnt++;
+  //     }
+  //   }
+  //   if(cnt ==  1) return number;
+  // }
+
+  //better approach
+  //using hashing
+
+  //finding maximum value in array
+  // int maxi = arr[0];
+  // for(int i = 0; i < n; i++){
+  //   maxi = max(maxi, arr[i]);
+  // }
+  // //initialize hash array and counting frequencies of each element
+  // vector<int> hash(maxi + 1, 0);
+  // for(int i = 0; i < n; i++){
+  //   hash[arr[i]]++;
+  // }
+  // //find element that occurs exactly once
+  // for(int i = 0; i < n; i++){
+  //   if(hash[arr[i]] == 1){
+  //     return arr[i];
+  //   }
+  // }
+  // //return -1 if element not found
+  // return -1;
+
+  //optimal solution - using XOR
+
+  int xr = 0;
+  for(int i = 0; i < n; i++){
+    xr = xr ^ arr[i];
+  }
+  return xr;
 }
 
 int main(){
