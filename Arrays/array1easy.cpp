@@ -405,10 +405,34 @@ int oncetwice(int arr[], int n){
   return xr;
 }
 
+//longest subarray with sum k (positives)
+
+//brute force
+
+int longestSubarray(int arr[], int n, int k){
+  int maxLength = 0;
+  for(int i = 0; i < n; i++){
+    for(int j = i; j < n; j++){
+      int sum = 0;
+      for(int l = i; l <= j; l++){
+        sum += arr[l];
+      }
+      if(sum == k){
+        maxLength = max(maxLength, j - i + 1);
+      }
+    }
+  }
+  return maxLength;
+}
+
+
 int main(){
-  int n = 7;
-  int arr[7] = {1,1,2,3,3,4,4};
-  cout << oncetwice(arr, n);
+  int n = 10;
+  int arr[10] = {1,2,3,1,1,1,1,4,2,3};
+  int k = 3;
+  // int arr[7] = {1,1,2,3,3,4,4};
+  // cout << oncetwice(arr, n);
+  cout << longestSubarray(arr, n, k);
   // int arr[9] = {1,1,0,1,1,1,0,1,1};
   // cout << maxones(arr, n);
   // int arr[5] = {1,2,4,5};
