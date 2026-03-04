@@ -410,19 +410,32 @@ int oncetwice(int arr[], int n){
 //brute force
 
 int longestSubarray(int arr[], int n, int k){
-  int maxLength = 0;
+  // int maxLength = 0;
+  // for(int i = 0; i < n; i++){
+  //   for(int j = i; j < n; j++){
+  //     int sum = 0;
+  //     for(int l = i; l <= j; l++){
+  //       sum += arr[l];
+  //     }
+  //     if(sum == k){
+  //       maxLength = max(maxLength, j - i + 1);
+  //     }
+  //   }
+  // }
+  // return maxLength;
+
+  //second brute force approach we reduce 1 loop and improve time complexity to o(n^2)
+  int maxlength = 0;
   for(int i = 0; i < n; i++){
+    int sum = 0;
     for(int j = i; j < n; j++){
-      int sum = 0;
-      for(int l = i; l <= j; l++){
-        sum += arr[l];
-      }
+      sum += arr[j];
       if(sum == k){
-        maxLength = max(maxLength, j - i + 1);
+      maxlength = max(maxlength, j - i + 1);
       }
     }
   }
-  return maxLength;
+  return maxlength;
 }
 
 
