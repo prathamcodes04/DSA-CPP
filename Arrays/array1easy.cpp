@@ -425,24 +425,65 @@ int longestSubarray(int arr[], int n, int k){
   // return maxLength;
 
   //second brute force approach we reduce 1 loop and improve time complexity to o(n^2)
-  int maxlength = 0;
-  for(int i = 0; i < n; i++){
-    int sum = 0;
-    for(int j = i; j < n; j++){
-      sum += arr[j];
-      if(sum == k){
-      maxlength = max(maxlength, j - i + 1);
-      }
+
+  // int maxlength = 0;
+  // for(int i = 0; i < n; i++){
+  //   int sum = 0;
+  //   for(int j = i; j < n; j++){
+  //     sum += arr[j];
+  //     if(sum == k){
+  //     maxlength = max(maxlength, j - i + 1);
+  //     }
+  //   }
+  // }
+  // return maxlength;
+
+  //better solution using hashing
+  // unordered_map<int, int> mp;
+  // int sum = 0;
+  // int maxlen = 0;
+  // for(int i = 0; i < n; i++){
+  //   sum += arr[i];
+  //   //from 0 to i index
+  //   if(sum == k){
+  //     maxlen = i + 1;
+  //   }
+  //   //subarray in middle
+  //   if(mp.find(sum - k) != mp.end()){
+  //     int len = i - mp[sum - k];
+  //     maxlen = max(maxlen, len);
+  //   }
+  //   //store first occurence only
+  //   if(mp.find(sum) == mp.end()){
+  //     mp[sum] = i;
+  //   }
+  // }
+  // return maxlen;
+
+  //optimal solution - two pointer approach
+  int left = 0;
+  int right = 0;
+  int sum = arr[0];
+  int maxlen = 0;
+  while(right < n){
+    while(left <= right && sum > k){
+      sum -= arr[left];
+      left++;
     }
+    if(sum == k){
+      maxlen = max(maxlen, right - left + 1);
+    }
+    right++;
+    if(right < n) sum += arr[right];
   }
-  return maxlength;
+  return maxlen;
 }
 
 
 int main(){
   int n = 10;
   int arr[10] = {1,2,3,1,1,1,1,4,2,3};
-  int k = 3;
+  int k = 6;
   // int arr[7] = {1,1,2,3,3,4,4};
   // cout << oncetwice(arr, n);
   cout << longestSubarray(arr, n, k);
