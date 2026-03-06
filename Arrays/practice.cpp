@@ -127,23 +127,62 @@ void practice(int arr[], int n, int k){
 
 
    //left rotate array by k places
-   k = k % n;
-   vector<int> temp;
-   //put k elements in temp
-   for(int i = 0; i < k; i++){
-      temp.push_back(arr[i]);
-   }
-   //shift remianing elements to left 
-   for(int i = k; i < n; i++){
-      arr[i-k] = arr[i];
-   }
-   //put back elements into array from temp
-   for(int i = 0; i < k; i++){
-      arr[n-k+i] = temp[i];
-   }
+   
+   //brute force
+   // k = k % n;
+   // vector<int> temp;
+   // //put k elements in temp
+   // for(int i = 0; i < k; i++){
+   //    temp.push_back(arr[i]);
+   // }
+   // //shift remianing elements to left 
+   // for(int i = k; i < n; i++){
+   //    arr[i-k] = arr[i];
+   // }
+   // //put back elements into array from temp
+   // for(int i = 0; i < k; i++){
+   //    arr[n-k+i] = temp[i];
+   // }
+   // for(int i = 0; i < n; i++){
+   //    cout << arr[i] << " ";
+   // }
+
+   //optimal
+   // k = k%n;
+   // reverse(arr, arr+k);
+   // reverse(arr+k, arr+n);
+   // reverse(arr, arr+n);
+   // for(int i = 0; i < n; i++){
+   //    cout << arr[i] << " ";
+   // }
+
+   //right rotate array by k places
+
+   //brute force
+   // k = k % n;
+   // vector<int> temp;
+   // for(int i = n-k; i < n; i++){
+   //    temp.push_back(arr[i]);
+   // }
+   // for(int i = n-k-1; i >= 0; i--){
+   //    arr[i+k] = arr[i];
+   // }
+   // for(int i = 0; i < k; i++){
+   //    arr[i] = temp[i];
+   // }
+   // for(int i = 0; i < n; i++){
+   //    cout << arr[i] << " ";
+   // }   
+
+   //optimal
+   k = k%n;
+   reverse(arr, arr+n);
+   reverse(arr, arr+k);
+   reverse(arr+k, arr+n);
    for(int i = 0; i < n; i++){
       cout << arr[i] << " ";
    }
+
 }
 
 int main(){

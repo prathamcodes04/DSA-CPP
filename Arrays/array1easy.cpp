@@ -113,7 +113,7 @@ void leftrotatekplaces(int arr[], int n, int k){
   for(int i = 0; i < k; i++){
     temp.push_back(arr[i]);
   }
-  //shifting remainin elements to left
+  //shifting remaining elements to left
   for(int i = k; i < n; i++){
     arr[i - k] = arr[i];
   }
@@ -130,6 +130,32 @@ void rotateKplaces(int arr[], int n, int k){
   reverse(arr + k, arr + n);
   reverse(arr, arr + n);
 }
+
+//right rotate array by k places
+//brute force
+// k = k % n;
+// vector<int> temp;
+// for(int i = n-k; i < n; i++){
+//    temp.push_back(arr[i]);
+// }
+// for(int i = n-k-1; i >= 0; i--){
+//    arr[i+k] = arr[i];
+// }
+// for(int i = 0; i < k; i++){
+//    arr[i] = temp[i];
+// }
+// for(int i = 0; i < n; i++){
+//    cout << arr[i] << " ";
+// }   
+//optimal
+// k = k%n;
+// reverse(arr, arr+n);
+// reverse(arr, arr+k);
+// reverse(arr+k, arr+n);
+// for(int i = 0; i < n; i++){
+//   cout << arr[i] << " ";
+// }
+
 
 //move all zeros to the end of the array 
 void moveallzerostoend(int arr[], int n){
