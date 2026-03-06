@@ -2,7 +2,7 @@
 using namespace std;
 //find largest element in an array
 int largestElement(int arr[], int n){
-  int largest = arr[0]; //assume
+  int largest = arr[0]; 
   for(int i = 0; i < n; i++){
     if(arr[i] > largest){
       largest = arr[i];
@@ -13,8 +13,28 @@ int largestElement(int arr[], int n){
 
 //find second largest element in an array
 int secondLargest(int arr[], int n){
-  int largest = arr[0];
-  int slargest = -1;
+  //brute force
+  // sort(arr, arr + n);
+  // return arr[n-2];
+
+  //better
+  // int largest = INT_MIN;
+  // int slargest = INT_MIN;
+  // for(int i = 0; i < n; i++){
+  //    if(arr[i] > largest){
+  //       largest = arr[i];
+  //    }
+  // }
+  // for(int i = 0; i < n; i++){
+  //    if(arr[i] > slargest && arr[i] != largest){
+  //       slargest = arr[i];
+  //    }
+  // }
+  // return slargest;
+
+  //optimal
+  int largest = INT_MIN;
+  int slargest = INT_MIN;
   for(int i = 1; i < n; i++){
     if(arr[i] > largest){
       slargest = largest;
@@ -545,7 +565,7 @@ int main(){
   // }
   // int k;
   // cin >> k;
-  // rotateKplaces(arr, n, k);
+  // rotateKplaces(arr, n, k);t
   // for(int i = 0; i < n; i++){
   //   cout << arr[i] << " ";
   // }
