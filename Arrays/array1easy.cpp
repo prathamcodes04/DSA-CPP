@@ -406,10 +406,8 @@ int oncetwice(int arr[], int n){
 }
 
 //longest subarray with sum k (positives)
-
-//brute force
-
 int longestSubarray(int arr[], int n, int k){
+  //brute force
   // int maxLength = 0;
   // for(int i = 0; i < n; i++){
   //   for(int j = i; j < n; j++){
