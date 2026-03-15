@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
-
-void practice(int arr[], int n, int k){
+/*
+void practice(int arr[], int n){
    //largest element
 
    //brute force
@@ -175,24 +175,161 @@ void practice(int arr[], int n, int k){
    // }   
 
    //optimal
-   k = k%n;
-   reverse(arr, arr+n);
-   reverse(arr, arr+k);
-   reverse(arr+k, arr+n);
-   for(int i = 0; i < n; i++){
-      cout << arr[i] << " ";
-   }
+   // k = k%n;
+   // reverse(arr, arr+n);
+   // reverse(arr, arr+k);
+   // reverse(arr+k, arr+n);
+   // for(int i = 0; i < n; i++){
+   //    cout << arr[i] << " ";
+   // }
+
+   //move all zeros to the end of the array
+
+   //brute force
+
+   // vector<int> temp;
+   // for(int i = 0; i < n; i++){
+   //    if(arr[i] != 0){
+   //       temp.push_back(arr[i]);
+   //    }
+   // }
+   // for(int i = 0; i < temp.size(); i++){
+   //    arr[i] = temp[i];
+   // }
+   // for(int i = temp.size(); i < n; i++){
+   //    arr[i] = 0;
+   // }
+   // for(int i = 0; i < n; i++){
+   //    cout << arr[i] << " ";
+   // }
+
+   //optimal solution
+
+   // int j = 0; 
+   // for(int i = 0; i < n; i++){
+   //    if(arr[i] != 0){
+   //       swap(arr[i], arr[j]);
+   //       j++;
+   //    }
+   // }
+   // for(int i = 0; i < n; i++){
+   //    cout << arr[i] << " ";
+   // }
+
+   //solution 2
+   // int j = -1;
+   // for(int i = 0; i < n; i++){
+   //    if(arr[i] == 0){
+   //       j = i;
+   //       break;
+   //    }
+   // }
+   // if(j == -1) return;
+   // for(int i = j+1; i < n; i++){
+   //    if(arr[i] != 0){
+   //       swap(arr[i], arr[j]);
+   //       j++;
+   //    }
+   // }
+   // for(int i = 0; i< n; i++){
+   //    cout << arr[i] << " ";
+   // }
+
+   //union of two arrays
 
 }
+*/
+
+int practice(int arr1[], int n1){
+   //linear search
+   // for(int i = 0; i < n; i++){
+   //    if(arr[i] == num){
+   //       return i;
+   //    }
+   // }
+   // return -1;
+
+   //finding the missing number
+   for(int i = 0; i < n1; i++){
+      int flag = 0;
+      for(int j = 0; j < n1; j++){
+         if(arr[j] == i){
+            flag = 1;
+            break;
+         }
+      }
+   }
+   if(flag == 0) return i;
+}
+
+/*
+void practice(int n1, int n2, int arr1[], int arr2[]){
+   //union of two arrays
+
+   //brute force
+   // set<int> st;
+   // for(int i = 0; i < n1; i++){
+   //    st.insert(arr1[i]);
+   // }
+   // for(int i = 0; i < n2; i++){
+   //    st.insert(arr2[i]);
+   // }
+   // for(auto it : st){
+   //    cout << it << " ";
+   // }
+
+   //optimal 
+   //two pointer approach
+   // int i = 0;
+   // int j = 0;
+   // vector<int> unionarr;
+   // while(i < n1 && j < n2){
+   //    if(arr1[i] < arr2[j]){
+   //       if(unionarr.size() == 0 || unionarr.back() != arr1[i]){
+   //          unionarr.push_back(arr1[i]);
+   //       }
+   //       i++;
+   //    }
+   //    else{
+   //       if(unionarr.size() == 0 || unionarr.back() != arr2[j]){
+   //          unionarr.push_back(arr2[j]);
+   //       }
+   //       j++;
+   //    }
+   // }
+   // while(i < n1){
+   //    if(unionarr.size() == 0 || unionarr.back() != arr1[i]){
+   //          unionarr.push_back(arr1[i]);
+   //       }
+   //    i++;
+   // }
+   // while(j < n2){
+   //    if(unionarr.size() == 0 || unionarr.back() != arr2[j]){
+   //          unionarr.push_back(arr2[j]);
+   //       }
+   //    j++;
+   // }
+   // for(auto it : unionarr){
+   //    cout << it << " ";
+   // }
+}
+*/
 
 int main(){
-   int n = 7;
+   int n1 = 5;
+   int n2 = 6;
+   int arr1[n1] = {1,2,4,5};
+   int arr2[n2] = {2,3,4,4,5,6};
+   // int n = 7;
    // int arr[5] = {2,3,5,4,1};
-   int arr[7] = {1,1,2,2,2,3,3};
-   int k = 10;
+   // int arr[7] = {1,1,2,2,2,3,3};
+   // int arr[7] = {1,1,2,2,2,3,3};
+   // // int arr[7] = {1,0,2,3,0,4,0};
+   // int k = 10;
+   // int num = 4;
    // int arr[1] = {5};
    // int arr[4] = {1,1,1,1};
-   // cout << practice(arr, n);
-   practice(arr, n, k);
+   cout << practice(arr1, n1);
+   // practice(n1, n2, arr1, arr2);
    return 0;
 }

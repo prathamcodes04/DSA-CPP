@@ -180,6 +180,8 @@ void moveallzerostoend(int arr[], int n){
   // }
 
   //optimal solution
+
+  //solution - 1
   //two pointer approach
   // int j = 0;
   // for(int i = 0; i < n; i++){
@@ -189,7 +191,8 @@ void moveallzerostoend(int arr[], int n){
   //   }
   // }
 
-  //or
+  //solution - 2
+  //avoid unnecessary swaps which above code does not
   //to store index of 0 element
   int j = -1;
 
