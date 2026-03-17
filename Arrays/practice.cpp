@@ -239,7 +239,7 @@ void practice(int arr[], int n){
 
 }
 */
-
+/*
 int practice(int arr1[], int n1){
    //linear search
    // for(int i = 0; i < n; i++){
@@ -250,18 +250,43 @@ int practice(int arr1[], int n1){
    // return -1;
 
    //finding the missing number
-   for(int i = 0; i < n1; i++){
-      int flag = 0;
-      for(int j = 0; j < n1; j++){
-         if(arr[j] == i){
-            flag = 1;
-            break;
-         }
-      }
-   }
-   if(flag == 0) return i;
-}
+   
+   //brute force
+   // for(int i = 0; i < n1; i++){
+   //    int flag = 0;
+   //    for(int j = 0; j < n1; j++){
+   //       if(arr1[j] == i){
+   //          flag = 1;
+   //          break;
+   //       }
+   //    }
+   //    if(flag == 0) return i;
+   // }
 
+   //better 
+   //using hashing
+   // int hash[n1+1] ={0};
+   // for(int i = 0; i < n1; i++){
+   //    hash[arr1[i]] = 1;
+   // }
+   // for(int i = 0; i < n1; i++){
+   //    if(hash[i] == 0){
+   //       return i;
+   //    }
+   // }
+
+   //optimal 
+   // //using xor
+   // int xor1 = 0;
+   // int xor2 = 0;
+   // for(int i = 0; i < n1 - 1; i++){
+   //    xor2 = xor2 ^ arr1[i]; // 2
+   //    xor1 = xor1 ^ i+1;
+   // }
+   // xor1 = xor1 ^ n1; // 1
+   // return xor1 ^ xor2;
+}
+*/
 /*
 void practice(int n1, int n2, int arr1[], int arr2[]){
    //union of two arrays
@@ -315,11 +340,85 @@ void practice(int n1, int n2, int arr1[], int arr2[]){
 }
 */
 
+int practice(int arr1[], int n1, int k){
+
+   //longest subarray
+
+   //brute force
+
+   // int maxlength = 0;
+   // for(int i = 0; i < n1; i++){
+   //    for(int j = i; j < n1; j++){
+   //       int sum = 0;
+   //       for(int l = i; l <= j; l++){
+   //          sum += arr1[l];
+   //       }
+   //       if(sum == k){
+   //          maxlength = max(maxlength, j - i + 1);
+   //       }
+   //    }
+   // }
+   // return maxlength;
+
+   //brute force - 2
+   // int maxlength = 0;
+   // for(int i = 0; i < n1; i++){
+   //    int sum = 0;
+   //    for(int j = i; j < n1; j++){
+   //       sum += arr1[j];
+   //       if(sum == k){
+   //          maxlength = max(maxlength, j-i+1);
+   //       }
+   //    }
+   // }
+   // return maxlength;
+
+   //better - using hashing
+   // unordered_map<int, int> mp;
+   // int sum = 0;
+   // int maxlen = 0;
+   // for(int i = 0; i < n1; i++){
+   //    sum += arr1[i];
+   //    if(sum == k){
+   //       maxlen = i+1;
+   //    }
+   //    if(mp.find(sum-k) != mp.end()){
+   //       int len = i - mp[sum-k];
+   //       maxlen = max(maxlen, len);
+   //    }
+   //    if(mp.find(sum) == mp.end()){
+   //       mp[sum] = i;
+   //    }
+   // }
+   // return maxlen;
+
+   //optimal - two pointer approach
+   int left = 0;
+   int right = 0;
+   int sum = arr1[0];
+   int maxlen = 0;
+   while(right < n1){
+      while(left <= right && sum > k){
+         sum -= arr1[left];
+         left++;
+      }
+      if(sum == k){
+         maxlen = max(maxlen, right - left + 1);
+      }
+      right++;
+      if(right < n1){
+         sum += arr1[right];
+      }
+   }
+   return maxlen;
+}
+
 int main(){
-   int n1 = 5;
-   int n2 = 6;
-   int arr1[n1] = {1,2,4,5};
-   int arr2[n2] = {2,3,4,4,5,6};
+   int n1 = 10;
+   // int n2 = 6;
+   int arr1[n1] = {1,2,3,1,1,1,1,4,2,3};
+   int k = 3;
+   // int arr2[n2] = {2,3,4,4,5,6};
    // int n = 7;
    // int arr[5] = {2,3,5,4,1};
    // int arr[7] = {1,1,2,2,2,3,3};
@@ -329,7 +428,7 @@ int main(){
    // int num = 4;
    // int arr[1] = {5};
    // int arr[4] = {1,1,1,1};
-   cout << practice(arr1, n1);
+   cout << practice(arr1, n1, k);
    // practice(n1, n2, arr1, arr2);
    return 0;
 }
