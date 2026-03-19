@@ -70,10 +70,64 @@ void sort0s1s2s(int n, int arr[]){
    }
 }
 
+int majorityelement(int n, int arr[]){
+   //brute force
+   // for(int i = 0; i < n; i++){
+   //    int cnt = 0;
+   //    for(int j = 0; j < n; j++){
+   //       if(arr[j] == arr[i]){ //count only matching elements
+   //          cnt++;
+   //       }
+   //    }
+   //    if(cnt > n/2){
+   //       return arr[i];
+   //    }
+   // }
+   // return -1; //if no majority element found
+
+   //better approach (hashing)
+   // unordered_map<int, int> mp;
+   // for(int i = 0; i < n; i++){ //count frequency
+   //    mp[arr[i]]++;
+   // }
+   // //check for majority element
+   // for(auto it : mp){
+   //    if(it.second > n/2){
+   //       return it.first;
+   //    }
+   // }
+
+   //optimal approach (moore's voting algorithm)
+   int cnt = 0; 
+   int el;
+   for(int i = 0; i < n; i++){
+      if(cnt == 0){
+         cnt = 1;
+         el = arr[i];
+      }
+      else if(arr[i] == el){
+         cnt++;
+      }
+      else{
+         cnt--;
+      }
+   }
+   int cnt1 = 0;
+   for(int i = 0; i < n; i++){
+      if(arr[i] == el) cnt1++;
+   }
+   if(cnt1 > n/2){
+      return el;
+   }
+   return -1;
+}
+
 int main(){
-   int n = 12;
-   int arr[n] = {0,1,2,0,1,2,1,2,0,0,0,1};
-   sort0s1s2s(n, arr);
+   int n = 7;
+   int arr[n] = {2,2,3,3,1,2,2};
+   cout << majorityelement(n, arr);
+   // int arr[n] = {0,1,2,0,1,2,1,2,0,0,0,1};
+   // sort0s1s2s(n, arr);
    // int arr[n] = {2,6,5,8,11};
    // int target = 14;
    // vector<int> result = twosum(n, arr, target);
