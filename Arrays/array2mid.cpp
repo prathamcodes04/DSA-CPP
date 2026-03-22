@@ -121,11 +121,86 @@ int majorityelement(int n, int arr[]){
    }
    return -1;
 }
+/*
+int maxsubarraysum(int n, int arr[]){
+   //brute force
+   // int max_num = INT_MIN;
+   // for(int i = 0; i < n; i++){
+   //    for(int j = i; j < n; j++){
+   //       int sum = 0;
+   //       for(int k = i; k <= j; k++){
+   //          sum += arr[k];
+   //       }
+   //       max_num = max(sum, max_num);
+   //    }
+   // }
+   // return max_num;
+
+   //better approach -  remove k loop
+   // int maxNum = INT_MIN;
+   // for(int i = 0; i < n; i++){
+   //    int sum = 0;
+   //    for(int j = i; j < n; j++){
+   //       sum += arr[j];
+   //       maxNum = max(sum, maxNum);
+   //    }
+   // }
+   // return maxNum;
+
+   //optimal approach (kadane's algorithm)
+   // int sum = 0;
+   // int maxNum = INT_MIN;
+   // for(int i = 0; i < n; i++){
+   //    sum += arr[i];
+   //    maxNum = max(sum, maxNum);
+   //    if(sum < 0){
+   //       sum = 0;
+   //    }
+   // }
+   // return maxNum;
+}
+*/
+vector<int> maxsubarraysum(int n, int arr[]){
+   int sum = 0;
+   int maxsum = INT_MIN;
+   int start = 0;
+   int ansStart = -1;
+   int ansEnd = -1;
+
+   for(int i = 0; i < n; i++){
+      if(sum == 0) start = i;
+      sum += arr[i];
+      if(sum > maxsum){
+         maxsum = sum;
+         ansStart = start;
+         ansEnd = i;
+      }
+      if(sum < 0){
+         sum = 0;
+      }
+   }
+   vector<int> result;
+   for(int i = ansStart; i <= ansEnd; i++){
+      result.push_back(arr[i]);
+   }
+   return result;
+}
+
+int buynsellstock(int n, int arr[]){
+   
+}
 
 int main(){
-   int n = 7;
-   int arr[n] = {2,2,3,3,1,2,2};
-   cout << majorityelement(n, arr);
+   int n = 6;
+   int arr[n] = {7,1,5,3,6,4};
+   cout << buynsellstock(n, arr);
+   // int arr[n] = {-2,-3,4,-1,-2,1,5,-3};
+   // cout << majorityelement(n, arr);
+   // cout << maxsubarraysum(n, arr);
+   // vector<int> result = maxsubarraysum(n, arr);
+   // for(auto it : result){
+   //    cout << it << " ";
+   // }
    // int arr[n] = {0,1,2,0,1,2,1,2,0,0,0,1};
    // sort0s1s2s(n, arr);
    // int arr[n] = {2,6,5,8,11};
