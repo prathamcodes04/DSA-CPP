@@ -121,7 +121,7 @@ int majorityelement(int n, int arr[]){
    }
    return -1;
 }
-/*
+
 int maxsubarraysum(int n, int arr[]){
    //brute force
    // int max_num = INT_MIN;
@@ -159,7 +159,7 @@ int maxsubarraysum(int n, int arr[]){
    // }
    // return maxNum;
 }
-*/
+/*
 vector<int> maxsubarraysum(int n, int arr[]){
    int sum = 0;
    int maxsum = INT_MIN;
@@ -185,7 +185,7 @@ vector<int> maxsubarraysum(int n, int arr[]){
    }
    return result;
 }
-
+*/
 int buynsellstock(int n, int arr[]){
    int mini = arr[0];
    int maxprofit = 0;
@@ -231,10 +231,22 @@ void rearrangebysign(int n, int arr[]){
    }
 }
 
+void nextpermutations(int n, int arr[]){
+   //better approach - using inbuilt function
+   // next_permutation(arr, arr+n);
+   // for(int i = 0; i < n; i++){
+   //    cout << arr[i] << " ";
+   // }
+
+   //optimal approach
+   
+}
+
 int main(){
-   int n = 6;
-   int arr[n] = {3,1,-2,-5,2,-4};
-   rearrangebysign(n, arr);
+   int n = 3;
+   int arr[n] = {3,1,2};
+   nextpermutations(n, arr);
+   // rearrangebysign(n, arr);
    // cout << buynsellstock(n, arr);
    // int arr[n] = {-2,-3,4,-1,-2,1,5,-3};
    // cout << majorityelement(n, arr);
