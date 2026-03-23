@@ -187,13 +187,36 @@ vector<int> maxsubarraysum(int n, int arr[]){
 }
 
 int buynsellstock(int n, int arr[]){
-   
+   int mini = arr[0];
+   int maxprofit = 0;
+   for(int i = 0; i < n; i++){
+      int cost = arr[i] - mini;
+      maxprofit = max(maxprofit, cost);
+      mini = min(mini, arr[i]);
+   }
+   return maxprofit;
+}
+
+void rearrangebysign(int n, int arr[]){
+   vector<int> pos, neg;
+   for(int i = 0; i < n; i++){
+      if(arr[i] > 0) pos.push_back(arr[i]);
+      else neg.push_back(arr[i]);
+   }
+   for(int i = 0; i < n/2; i++){
+      arr[2*i] = pos[i];
+      arr[2*i+1] = neg[i];
+   }
+   for(int i = 0; i < n; i++){
+      cout << arr[i] << " ";
+   }
 }
 
 int main(){
    int n = 6;
-   int arr[n] = {7,1,5,3,6,4};
-   cout << buynsellstock(n, arr);
+   int arr[n] = {3,1,-2,-5,2,-4};
+   rearrangebysign(n, arr);
+   // cout << buynsellstock(n, arr);
    // int arr[n] = {-2,-3,4,-1,-2,1,5,-3};
    // cout << majorityelement(n, arr);
    // cout << maxsubarraysum(n, arr);
