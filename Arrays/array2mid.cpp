@@ -198,17 +198,36 @@ int buynsellstock(int n, int arr[]){
 }
 
 void rearrangebysign(int n, int arr[]){
-   vector<int> pos, neg;
+   //brute force
+   // vector<int> pos, neg;
+   // for(int i = 0; i < n; i++){
+   //    if(arr[i] > 0) pos.push_back(arr[i]);
+   //    else neg.push_back(arr[i]);
+   // }
+   // for(int i = 0; i < n/2; i++){
+   //    arr[2*i] = pos[i];
+   //    arr[2*i+1] = neg[i];
+   // }
+   // for(int i = 0; i < n; i++){
+   //    cout << arr[i] << " ";
+   // }
+
+   //optimal approach
+   vector<int> result(n);
+   int posindex = 0;
+   int negindex = 1;
    for(int i = 0; i < n; i++){
-      if(arr[i] > 0) pos.push_back(arr[i]);
-      else neg.push_back(arr[i]);
-   }
-   for(int i = 0; i < n/2; i++){
-      arr[2*i] = pos[i];
-      arr[2*i+1] = neg[i];
+      if(arr[i] > 0){
+         result[posindex] = arr[i];
+         posindex += 2;
+      }
+      else{
+         result[negindex] = arr[i];
+         negindex += 2;
+      }
    }
    for(int i = 0; i < n; i++){
-      cout << arr[i] << " ";
+      cout << result[i] << " ";
    }
 }
 
