@@ -297,10 +297,53 @@ void leaderinanarray(int n, int arr[]){
    }
 }
 
+bool linearSearch(int arr[], int n, int target){
+   for(int i = 0; i < n; i++){
+      if(arr[i] == target) return true;
+   }
+   return false;
+}
+int longestsequence(int n, int arr[]){
+   //brute force
+   // if(n == 0) return 0;
+
+   // int longest = 1;
+   // for(int i = 0; i < n; i++){
+   //    int x = arr[i];
+   //    int cnt = 1;
+   //    while(linearSearch(arr, n, x+1)){
+   //       x += 1;
+   //       cnt += 1;
+   //    }
+   //    longest = max(longest, cnt);
+   // }
+   // return longest;
+
+   //better approach
+   if(n == 0) return 0;
+   sort(arr, arr+n);
+   int lastSmaller = INT_MIN;
+   int cnt = 0;
+   int longest = 1;
+   for(int i = 0; i < n; i++){
+      if(arr[i] - 1 == lastSmaller){
+         cnt += 1;
+         lastSmaller = arr[i];
+      }
+      else if(lastSmaller != arr[i]){
+         cnt = 1;
+         lastSmaller = arr[i];
+      }
+      longest = max(longest, cnt);
+   }
+   return longest;
+}
+
 int main(){
-   int n = 6;
-   int arr[n] = {10,22,12,3,0,6};
-   leaderinanarray(n, arr);
+   int n = 9;
+   int arr[n] = {102,4,100,1,101,3,2,1,1};
+   cout << longestsequence(n, arr);
+   // leaderinanarray(n, arr);
    // nextpermutations(n, arr);
    // rearrangebysign(n, arr);
    // cout << buynsellstock(n, arr);
