@@ -239,13 +239,69 @@ void nextpermutations(int n, int arr[]){
    // }
 
    //optimal approach
-   
+   int index = -1;
+   for(int i = n-2; i >= 0; i--){
+      if(arr[i] < arr[i+1]){ //finding break index
+         index = i;
+         break;
+      }
+   }
+   if(index == -1){
+      reverse(arr, arr+n);
+      return;
+   }
+   for(int i = n-1; i >= 0; i--){
+      if(arr[i] > arr[index]){
+         swap(arr[i], arr[index]);
+         break;
+      }
+   }
+   reverse(arr + index + 1, arr + n);
+   for(int i = 0; i < n; i++){
+      cout << arr[i] << " ";
+   }
+}
+
+void leaderinanarray(int n, int arr[]){
+   //brute force
+   // vector<int> ans;
+   // for(int i = 0; i < n; i++){
+   //    bool leader = true;
+   //    for(int j = i + 1; j < n; j++){
+   //       if(arr[j] > arr[i]){
+   //          leader  = false;
+   //          break;
+   //       }
+   //    }
+   //    if(leader){
+   //       ans.push_back(arr[i]);
+   //    }
+   // }
+   // for(auto it : ans){
+   //    cout << it << " ";
+   // }
+
+   //optimal solution
+   vector<int> ans;
+   if(n == 0) return;
+   int maxi = INT_MIN;
+   for(int i = n-1; i >= 0; i--){
+      if(arr[i] > maxi){
+         ans.push_back(arr[i]);
+         maxi = arr[i];
+      }
+   }
+   // reverse(ans.begin(), ans.end());
+   for(auto it : ans){
+      cout << it << " ";
+   }
 }
 
 int main(){
-   int n = 3;
-   int arr[n] = {3,1,2};
-   nextpermutations(n, arr);
+   int n = 6;
+   int arr[n] = {10,22,12,3,0,6};
+   leaderinanarray(n, arr);
+   // nextpermutations(n, arr);
    // rearrangebysign(n, arr);
    // cout << buynsellstock(n, arr);
    // int arr[n] = {-2,-3,4,-1,-2,1,5,-3};
