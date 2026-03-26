@@ -362,7 +362,7 @@ int longestsequence(int n, int arr[]){
 void setzero(vector<vector<int>>& matrix){
    int n = matrix.size(); //get number of rows
    int m = matrix[0].size(); //get number of columns
-
+   //traverse each cell of matrix
    for(int i = 0; i < n; i++){
       for(int j = 0; j < m; j++){
          if(matrix[i][j] == 0){
