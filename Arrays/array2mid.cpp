@@ -339,30 +339,73 @@ int longestsequence(int n, int arr[]){
    // return longest;
 
    //optimal soution
-   if(n == 0) return 0;
-   int longest = 1;
-   unordered_set<int> st;
+   // if(n == 0) return 0;
+   // int longest = 1;
+   // unordered_set<int> st;
+   // for(int i = 0; i < n; i++){
+   //    st.insert(arr[i]);
+   // }
+   // for(auto it : st){
+   //    if(st.find(it - 1) == st.end()){
+   //       int cnt = 1;
+   //       int x = it;
+   //       while(st.find(x+1) != st.end()){
+   //          x += 1;
+   //          cnt += 1;
+   //       }
+   //       longest = max(longest, cnt);
+   //    }
+   // }
+   // return longest;
+}
+
+void setzero(vector<vector<int>>& matrix){
+   int n = matrix.size(); //get number of rows
+   int m = matrix[0].size(); //get number of columns
+
    for(int i = 0; i < n; i++){
-      st.insert(arr[i]);
-   }
-   for(auto it : st){
-      if(st.find(it - 1) == st.end()){
-         int cnt = 1;
-         int x = it;
-         while(st.find(x+1) != st.end()){
-            x += 1;
-            cnt += 1;
+      for(int j = 0; j < m; j++){
+         if(matrix[i][j] == 0){
+            //mark all the elements in this row as -1
+            for(int col = 0; col < m; col++){
+               if(matrix[i][col] != 0){
+                  matrix[i][col] = -1;
+               }
+            }
+            //mark all the elements in this column as -1
+            for(int row = 0; row < n; row++){
+               if(matrix[row][j] != 0){
+                  matrix[row][j] = -1;
+               }
+            }
          }
-         longest = max(longest, cnt);
       }
    }
-   return longest;
+   //replace all -1 markers with 0
+   for(int i = 0; i < n; i++){
+      for(int j = 0; j < m; j++){
+         if(matrix[i][j] == -1){
+            matrix[i][j] = 0;
+         }
+      }
+   }
 }
 
 int main(){
-   int n = 9;
-   int arr[n] = {102,4,100,1,101,3,2,1,1};
-   cout << longestsequence(n, arr);
+   // int n = 9;
+   vector<vector<int>> matrix = {
+   {1,1,1,1},
+   {1,0,0,1},
+   {1,1,0,1},
+   {1,1,1,1}};
+   setzero(matrix);
+   for(auto row : matrix){
+      for(auto val : row){
+         cout << val << " ";
+      }
+      cout << endl;
+   }
+   // cout << longestsequence(n, arr);
    // leaderinanarray(n, arr);
    // nextpermutations(n, arr);
    // rearrangebysign(n, arr);
