@@ -449,14 +449,33 @@ void setzero(vector<vector<int>>& matrix){
    }
 }
 
+void rotatematrix(vector<vector<int>>& matrix){
+   //brute force
+   int n = matrix.size();
+   //extra matrix
+   vector<vector<int>> rotated(n, vector<int>(n));
+   //fill rotated matrix
+   for(int i = 0; i < n; i++){
+      for(int j = 0; j < n; j++){
+         rotated[j][n-1-i] = matrix[i][j];
+      }
+   }
+   //copy back to original matrix
+   for(int i = 0; i < n; i++){
+      for(int j = 0; j < n; j++){
+         matrix[i][j] = rotated[i][j];
+      }
+   }
+   
+}
+
 int main(){
    // int n = 9;
    vector<vector<int>> matrix = {
-   {1,1,1,1},
-   {1,0,0,1},
-   {1,1,0,1},
-   {1,1,1,1}};
-   setzero(matrix);
+   {1,2,3},
+   {4,5,6},
+   {7,8,9}};
+   rotatematrix(matrix);
    for(auto row : matrix){
       for(auto val : row){
          cout << val << " ";
