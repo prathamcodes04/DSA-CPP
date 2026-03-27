@@ -515,14 +515,48 @@ void matrixspiralmanner(vector<vector<int>>& matrix){
    }
 }
 
+int countsubarraysumk(int n, int arr[], int k){
+   //better
+   // int cnt = 0;
+   // for(int i = 0; i < n; i++){
+   //    int sum = 0;
+   //    for(int j = i; j < n; j++){
+   //       sum += arr[j];
+   //       if(sum == k){
+   //         cnt++; 
+   //       }
+   //    }
+   // }
+   // return cnt;
+
+   //optimal(prefix sum + hashmap)
+   unordered_map<int, int> mp; //store frequencies
+   int prefixsum = 0;
+   int count = 0;
+   mp[0] = 1; //base case : prefixsum 0 has occured ince
+   for(int i = 0; i < n; i++){
+      prefixsum += arr[i]; //add current element
+      //check if sum-k exists
+      int remove = prefixsum - k;
+      if(mp.find(remove) != mp.end()){ //if prefixsum seen before
+         count += mp[remove];
+      }
+      mp[prefixsum]++;
+   }
+   return count;
+}
+
 int main(){
-   // int n = 9;
-   vector<vector<int>> matrix = {
-   {1,2,3,4},
-   {5,6,7,8},
-   {9,10,11,12},
-   {13,14,15,16}};
-   matrixspiralmanner(matrix);
+   int n = 4;
+   int arr[n] = {3,1,2,4};
+   int k = 6;
+   cout << countsubarraysumk(n, arr, k);
+   // vector<vector<int>> matrix = {
+   // {1,2,3,4},
+   // {5,6,7,8},
+   // {9,10,11,12},
+   // {13,14,15,16}};
+   // matrixspiralmanner(matrix);
    // for(auto row : matrix){
    //    for(auto val : row){
    //       cout << val << " ";
