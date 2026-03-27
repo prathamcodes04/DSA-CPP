@@ -451,30 +451,43 @@ void setzero(vector<vector<int>>& matrix){
 
 void rotatematrix(vector<vector<int>>& matrix){
    //brute force
+   // int n = matrix.size();
+   // //extra matrix
+   // vector<vector<int>> rotated(n, vector<int>(n));
+   // //fill rotated matrix
+   // for(int i = 0; i < n; i++){
+   //    for(int j = 0; j < n; j++){
+   //       rotated[j][n-1-i] = matrix[i][j];
+   //    }
+   // }
+   // //copy back to original matrix
+   // for(int i = 0; i < n; i++){
+   //    for(int j = 0; j < n; j++){
+   //       matrix[i][j] = rotated[i][j];
+   //    }
+   // }
+
+   //optimal approach (transpose -> reverse each row)
    int n = matrix.size();
-   //extra matrix
-   vector<vector<int>> rotated(n, vector<int>(n));
-   //fill rotated matrix
+   //transpose
    for(int i = 0; i < n; i++){
-      for(int j = 0; j < n; j++){
-         rotated[j][n-1-i] = matrix[i][j];
+      for(int j = i+1; j < n; j++){
+         swap(matrix[i][j], matrix[j][i]);
       }
    }
-   //copy back to original matrix
+   //reverse each row
    for(int i = 0; i < n; i++){
-      for(int j = 0; j < n; j++){
-         matrix[i][j] = rotated[i][j];
-      }
+      reverse(matrix[i].begin(), matrix[i].end());
    }
-   
 }
 
 int main(){
    // int n = 9;
    vector<vector<int>> matrix = {
-   {1,2,3},
-   {4,5,6},
-   {7,8,9}};
+   {1,2,3,4},
+   {5,6,7,8},
+   {9,10,11,12},
+   {13,14,15,16}};
    rotatematrix(matrix);
    for(auto row : matrix){
       for(auto val : row){
