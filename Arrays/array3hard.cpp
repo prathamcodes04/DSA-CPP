@@ -89,15 +89,59 @@ vector<int> majorityelement(int arr[], int n){
     return result;
 }
 
+vector<vector<int>> threesum(int arr[], int n){
+
+    //brute force
+    // set<vector<int>> st;
+    // for(int i = 0; i < n ; i++){
+    //     for(int j = i + 1; j < n; j++){
+    //         for(int k = j + 1; k < n; k++){
+    //             if(arr[i] + arr[j] + arr[k] == 0){
+    //                 vector<int> temp = {arr[i], arr[j],arr[k]};
+    //                 sort(temp.begin(), temp.end());
+    //                 st.insert(temp);
+    //             }
+    //         }
+    //     }
+    // }
+    // vector<vector<int>> ans(st.begin(), st.end());
+    // return ans;
+
+    //better approach
+    set<vector<int>> st;
+    for(int i = 0; i < n; i++){
+        set<int> hashset;
+        for(int j = i + 1; j < n; j++){
+            int third = -(arr[i] + arr[j]);
+            if(hashset.find(third) != hashset.end()){
+                vector<int> temp = {arr[i], arr[j], third};
+                sort(temp.begin(), temp.end());
+                st.insert(temp);
+            }
+            hashset.insert(arr[j]);
+        }
+    }
+    vector<vector<int>> ans(st.begin(), st.end());
+    return ans;
+}
 
 int main(){
     //majority element
-    int n = 8;
-    int arr[n] = {1,1,1,3,3,2,2,2};
-    vector<int> result = majorityelement(arr, n);
-    for(auto it : result){
-        cout << it << " ";
+    int n = 6;
+    int arr[n] = {-1,0,1,2,-1,-4};
+    vector<vector<int>> result = threesum(arr, n);
+    
+    for(auto vec : result){
+        for(auto x : vec){
+            cout << x << " ";
+        }
+        cout << endl;
     }
+
+    // vector<int> result = majorityelement(arr, n);
+    // for(auto it : result){
+    //     cout << it << " ";
+    // }
 
 
     //pascal's triangle
