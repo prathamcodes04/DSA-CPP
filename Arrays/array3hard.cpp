@@ -89,6 +89,7 @@ vector<int> majorityelement(int arr[], int n){
     return result;
 }
 
+//three sum
 vector<vector<int>> threesum(int arr[], int n){
 
     //brute force
@@ -151,13 +152,38 @@ vector<vector<int>> threesum(int arr[], int n){
         }
     }
     return ans;
+
+
+}
+
+//four sum
+vector<vector<int>> foursum(int arr[], int n){
+
+    //brute force
+    set<vector<int>> st;
+    for(int i = 0; i < n; i++){
+        for(int j = i + 1; j < n; j++){
+            for(int k = j + 1; k < n; k++){
+                for(int l = k + 1; l < n; l++){
+                    if(arr[i] + arr[j] + arr[k] + arr[l] == 0){
+                        vector<int> temp = {arr[i], arr[j], arr[k], arr[l]};
+                        sort(temp.begin(), temp.end());
+                        st.insert(temp);
+                    }
+                }
+            }
+        }
+    }
+    vector<vector<int>> ans(st.begin(), st.end());
+    return ans;
 }
 
 int main(){
     //majority element
     int n = 6;
-    int arr[n] = {-1,0,1,2,-1,-4};
-    vector<vector<int>> result = threesum(arr, n);
+    int arr[n] = {1,0,-1,0,-2,2};
+    // vector<vector<int>> result = threesum(arr, n);
+    vector<vector<int>> result = foursum(arr, n);
     
     for(auto vec : result){
         for(auto x : vec){
