@@ -292,16 +292,34 @@ int countsubarray(int n, int nums[]){
     // return cnt;
 
     //better approach remove k loop from above code
-    int target = 6;
+    // int target = 6;
+    // int cnt = 0;
+    // for(int i = 0; i < n; i++){
+    //     int xr = 0;
+    //     for(int j = i; j < n; j++){
+    //         xr = xr ^ nums[j];
+    //         if(xr == target){
+    //             cnt++;
+    //         }
+    //     }
+    // }
+    // return cnt;
+
+    //optimal approach
+    unordered_map<int, int> mp;
+    int k = 6;
+    int xr = 0;
     int cnt = 0;
     for(int i = 0; i < n; i++){
-        int xr = 0;
-        for(int j = i; j < n; j++){
-            xr = xr ^ nums[j];
-            if(xr == target){
-                cnt++;
-            }
+        xr = xr ^ nums[i];
+        if(xr == k){
+            cnt++;
         }
+        int required = xr ^ k;
+        if(mp.find(required) != mp.end()){
+            cnt += mp[required];
+        }
+        mp[xr]++;
     }
     return cnt;
 }
