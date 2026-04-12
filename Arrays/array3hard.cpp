@@ -272,11 +272,46 @@ int largestsubarraysum(int nums[], int n){
     return maxlen;
 }
 
+//count subarray with given xor k
+int countsubarray(int n, int nums[]){
+
+    //brute force
+    // int target = 6;
+    // int cnt = 0;
+    // for(int i = 0; i < n; i++){
+    //     for(int j = i; j < n; j++){
+    //         int xr = 0;
+    //         for(int k = i; k <= j; k++){
+    //             xr = xr ^ nums[k];
+    //         }
+    //         if(xr == target){
+    //             cnt++;
+    //         }
+    //     }
+    // }
+    // return cnt;
+
+    //better approach remove k loop from above code
+    int target = 6;
+    int cnt = 0;
+    for(int i = 0; i < n; i++){
+        int xr = 0;
+        for(int j = i; j < n; j++){
+            xr = xr ^ nums[j];
+            if(xr == target){
+                cnt++;
+            }
+        }
+    }
+    return cnt;
+}
+
 int main(){
     //majority element
-    int n = 6;
-    int nums[n] = {9,-3,3,-1,6,-5};
-    cout << largestsubarraysum(nums, n);
+    int n = 5;
+    int nums[n] = {4,2,2,6,4};
+    cout << countsubarray(n, nums);
+    // cout << largestsubarraysum(nums, n);
     // vector<vector<int>> result = threesum(arr, n);
     // vector<vector<int>> result = foursum(nums, n);
     
