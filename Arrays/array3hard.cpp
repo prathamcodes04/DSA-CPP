@@ -236,19 +236,38 @@ vector<vector<int>> foursum(int nums[], int n){
 
 }
 
+//largest subarray with sum 0
+int largestsubarraysum(int nums[], int n){
+    //return length
+    //brute force
+    int max_len = INT_MIN;
+    for(int i = 0; i < n; i++){
+        int sum = 0;
+        for(int j = i; j < n; j++){
+            sum += nums[j];
+            if(sum == 0){
+                int len = j - i + 1;
+                max_len = max(max_len, len);
+            }
+        }
+    }
+    return max_len;
+}
+
 int main(){
     //majority element
     int n = 6;
-    int nums[n] = {1,0,-1,0,-2,2};
+    int nums[n] = {9,-3,3,-1,6,-5};
+    cout << largestsubarraysum(nums, n);
     // vector<vector<int>> result = threesum(arr, n);
-    vector<vector<int>> result = foursum(nums, n);
+    // vector<vector<int>> result = foursum(nums, n);
     
-    for(auto vec : result){
-        for(auto x : vec){
-            cout << x << " ";
-        }
-        cout << endl;
-    }
+    // for(auto vec : result){
+    //     for(auto x : vec){
+    //         cout << x << " ";
+    //     }
+    //     cout << endl;
+    // }
 
     // vector<int> result = majorityelement(arr, n);
     // for(auto it : result){
