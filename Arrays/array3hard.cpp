@@ -240,18 +240,36 @@ vector<vector<int>> foursum(int nums[], int n){
 int largestsubarraysum(int nums[], int n){
     //return length
     //brute force
-    int max_len = INT_MIN;
+    // int max_len = INT_MIN;
+    // for(int i = 0; i < n; i++){
+    //     int sum = 0;
+    //     for(int j = i; j < n; j++){
+    //         sum += nums[j];
+    //         if(sum == 0){
+    //             int len = j - i + 1;
+    //             max_len = max(max_len, len);
+    //         }
+    //     }
+    // }
+    // return max_len;
+
+    //optimal approach - prefix sum + hashmap
+    unordered_map<int, int> mp;
+    int maxlen = 0;
+    int sum = 0;
     for(int i = 0; i < n; i++){
-        int sum = 0;
-        for(int j = i; j < n; j++){
-            sum += nums[j];
-            if(sum == 0){
-                int len = j - i + 1;
-                max_len = max(max_len, len);
-            }
+        sum += nums[i];
+        if(sum == 0){
+            maxlen = i + 1;
+        }
+        if(mp.find(sum) != mp.end()){
+            maxlen = max(maxlen, i - mp[sum]);
+        }
+        else{
+            mp[sum] = i;
         }
     }
-    return max_len;
+    return maxlen;
 }
 
 int main(){
