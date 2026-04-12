@@ -129,7 +129,7 @@ vector<vector<int>> threesum(int arr[], int n){
     vector<vector<int>> ans;
     sort(arr, arr + n);
     for(int i = 0; i < n; i++){
-        //skip duplicates for first element nnnn
+        //skip duplicates for first element 
         if(i > 0 && arr[i] == arr[i-1]) continue;
         int left = i + 1;
         int right = n - 1;
@@ -157,33 +157,91 @@ vector<vector<int>> threesum(int arr[], int n){
 }
 
 //four sum
-vector<vector<int>> foursum(int arr[], int n){
+vector<vector<int>> foursum(int nums[], int n){
 
     //brute force
-    set<vector<int>> st;
+    // set<vector<int>> st;
+    // for(int i = 0; i < n; i++){
+    //     for(int j = i + 1; j < n; j++){
+    //         for(int k = j + 1; k < n; k++){
+    //             for(int l = k + 1; l < n; l++){
+    //                 long long sum = arr[i] + arr[k];
+    //                 sum += arr[k];
+    //                 sum += arr[l];
+    //                 if(arr[i] + arr[j] + arr[k] + arr[l] == 0){
+    //                     vector<int> temp = {arr[i], arr[j], arr[k], arr[l]};
+    //                     sort(temp.begin(), temp.end());
+    //                     st.insert(temp);
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+    // vector<vector<int>> ans(st.begin(), st.end());
+    // return ans;
+
+    //better approach - hashing
+    // set<vector<int>> st;
+    // for(int i = 0; i < n; i++){
+    //     for(int j = i + 1; j < n; j++){
+    //         set<int> hashset;
+    //         for(int k = j + 1; k < n; k++){
+    //             int fourth = - (arr[i] + arr[j] + arr[k]);
+    //             if(hashset.find(fourth) != hashset.end()){
+    //                 vector<int> temp = {arr[i], arr[j], arr[k], fourth};
+    //                 sort(temp.begin(), temp.end());
+    //                 st.insert(temp);
+    //             }
+    //             hashset.insert(arr[k]);
+    //         }
+    //     }
+    // }
+    // vector<vector<int>> ans(st.begin(), st.end());
+    // return ans;
+
+    //optimal approach using two pointers
+    sort(nums, nums + n);
+    vector<vector<int>> result;
     for(int i = 0; i < n; i++){
+        //skipping duplicates for first element
+        if(i > 0 && nums[i] == nums[i-1]) continue;
         for(int j = i + 1; j < n; j++){
-            for(int k = j + 1; k < n; k++){
-                for(int l = k + 1; l < n; l++){
-                    if(arr[i] + arr[j] + arr[k] + arr[l] == 0){
-                        vector<int> temp = {arr[i], arr[j], arr[k], arr[l]};
-                        sort(temp.begin(), temp.end());
-                        st.insert(temp);
-                    }
+            //skipping duplicates for 2nd element
+            if(j != i + 1 && nums[j] == nums[j-1]) continue;
+            int left = j + 1;
+            int right = n - 1;
+            while(left < right){
+                long long sum = nums[i];
+                sum += nums[j];
+                sum += nums[left];
+                sum += nums[right];
+                if(sum < 0){
+                    left++;
+                }
+                else if(sum > 0){
+                    right--;
+                }
+                else{
+                    result.push_back({nums[i], nums[j], nums[left], nums[right]});
+                    left++;
+                    right--;
+                    while(left < right && nums[left] == nums[left - 1]) left++;
+                    while(left < right && nums[right] == nums[right + 1]) right--;
                 }
             }
         }
     }
-    vector<vector<int>> ans(st.begin(), st.end());
+    vector<vector<int>> ans(result.begin(), result.end());
     return ans;
+
 }
 
 int main(){
     //majority element
     int n = 6;
-    int arr[n] = {1,0,-1,0,-2,2};
+    int nums[n] = {1,0,-1,0,-2,2};
     // vector<vector<int>> result = threesum(arr, n);
-    vector<vector<int>> result = foursum(arr, n);
+    vector<vector<int>> result = foursum(nums, n);
     
     for(auto vec : result){
         for(auto x : vec){
