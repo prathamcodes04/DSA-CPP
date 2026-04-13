@@ -324,11 +324,43 @@ int countsubarray(int n, int nums[]){
     return cnt;
 }
 
+//merge overlapping sub-intervals
+vector<vector<int>>  mergeoverlap(vector<vector<int>>& intervals){
+    //brute force
+    int n = intervals.size();
+    sort(intervals.begin(), intervals.end());
+    vector<vector<int>> ans;
+    for(int i = 0; i < n; i++){
+        int start = intervals[i][0];
+        int end = intervals[i][1];
+        if(!ans.empty() && end <= ans.back()[1]){
+            continue;
+        }
+        for(int j = i+1; j < n; j++){
+            if(intervals[j][0] <= end){
+                end = max(end, intervals[j][1]);
+            }
+            else{
+                break;
+            }
+        }
+        ans.push_back({start, end});
+    }
+    return ans;
+
+    //optimal approach
+}
+
+
 int main(){
+    vector<vector<int>> intervals = {{1,3},{2,6},{8,10},{15,18}};
+    vector<vector<int>> result = mergeoverlap(intervals);
+    for(auto it : result){
+        cout << "[" << it[0] << "," << it[1] << "]";
+    }
     //majority element
-    int n = 5;
-    int nums[n] = {4,2,2,6,4};
-    cout << countsubarray(n, nums);
+    // int nums[n] = {4,2,2,6,4};
+    // cout << countsubarray(n, nums);
     // cout << largestsubarraysum(nums, n);
     // vector<vector<int>> result = threesum(arr, n);
     // vector<vector<int>> result = foursum(nums, n);
