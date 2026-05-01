@@ -26,7 +26,20 @@ vector<int> twoSum(vector<int>& nums, int target) {
     return {-1, -1};
 }
 
-
+//best time to buy and sell stock
+int maxProfit(vector<int>& prices) {
+    int minPrice = INT_MAX;
+    int maxProfit = 0;
+    for(int i = 0; i < prices.size(); i++){
+        if(prices[i] < minPrice){
+            minPrice = prices[i];
+        }else{
+            int profit = prices[i] - minPrice;
+            maxProfit = max(maxProfit, profit);
+        }
+    }
+    return maxProfit;
+}
 
 int main(){
     int a = 1;
