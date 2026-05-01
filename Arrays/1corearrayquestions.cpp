@@ -41,6 +41,40 @@ int maxProfit(vector<int>& prices) {
     return maxProfit;
 }
 
+//contains duplicate
+bool containsDuplicate(vector<int>& nums) {
+    //brute force
+    // for(int i = 0; i < nums.size(); i++){
+    //     for(int j = i + 1; j < nums.size(); j++){
+    //         if(nums[j] == nums[i]){
+    //             return 1;
+    //         }
+    //     }
+    // }
+    // return 0;
+
+    //better solution  - sorting
+    //     sort(nums.begin(), nums.end());
+    //     for(int i = 1; i < nums.size(); i++){
+    //         if(nums[i] == nums[i-1]){
+    //             return 1;
+    //         }
+    //     }
+    //     return 0;
+    // }
+
+    //optimal solution using hashing
+    unordered_map<int, int> mp;
+    for(int i = 0; i < nums.size(); i++){
+        int num = nums[i];
+        if(mp.find(num) != mp.end()){
+            return 1;
+        }
+        mp[num] = i;
+    }
+    return 0;
+}
+
 int main(){
     int a = 1;
     int b = 2;
