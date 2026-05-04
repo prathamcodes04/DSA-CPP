@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-//two sum
+//two sum - 1
 vector<int> twoSum(vector<int>& nums, int target) {
     //brute force
     // for(int i = 0; i < nums.size(); i++){
@@ -26,7 +26,7 @@ vector<int> twoSum(vector<int>& nums, int target) {
     return {-1, -1};
 }
 
-//best time to buy and sell stock
+//best time to buy and sell stock - 121
 int maxProfit(vector<int>& prices) {
     int minPrice = INT_MAX;
     int maxProfit = 0;
@@ -41,7 +41,7 @@ int maxProfit(vector<int>& prices) {
     return maxProfit;
 }
 
-//contains duplicate
+//contains duplicate - 217
 bool containsDuplicate(vector<int>& nums) {
     //brute force
     // for(int i = 0; i < nums.size(); i++){
@@ -73,6 +73,45 @@ bool containsDuplicate(vector<int>& nums) {
         mp[num] = i;
     }
     return 0;
+}
+
+//maximum subarray - 53
+int maxSubArray(vector<int>& nums) {
+    //brute force
+    // int maxsum = INT_MIN;
+    // for(int i = 0; i < nums.size(); i++){
+    //     for(int j = i; j < nums.size(); j++){
+    //         int sum = 0;
+    //         for(int k = i; k <= j; k++){
+    //             sum += nums[k];
+    //         }
+    //         maxsum = max(maxsum, sum);
+    //     }
+    // }
+    // return maxsum;
+
+    //better approach - remove k loop
+    // int maxsum = INT_MIN;
+    // for(int i = 0; i < nums.size(); i++){
+    //     int sum = 0;
+    //     for(int j = i; j < nums.size(); j++){
+    //         sum += nums[j];
+    //         maxsum = max(maxsum, sum);
+    //     }
+    // }
+    // return maxsum;
+
+    //optimal approach - kadanes algorithm
+    int maxsum = INT_MIN;
+    int sum = 0;
+    for(int i = 0; i < nums.size(); i++){
+        sum += nums[i];
+        maxsum = max(maxsum, sum);
+        if(sum < 0){
+            sum = 0; //reset sum when it becomes < 0
+        }
+    }
+    return maxsum;
 }
 
 int main(){
