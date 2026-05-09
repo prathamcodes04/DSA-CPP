@@ -155,7 +155,51 @@ int maxProduct(vector<int>& nums) {
     return maxsumarr;
 }
 
+//find the minimum in rotated sorted array
+int findMin(vector<int>& nums) {
+    // brute force - linear scan
+    //  int mini = nums[0];
+    //  for(int i = 0; i < nums.size(); i++){
+    //      mini = min(mini, nums[i]);
+    //  }
+    //  return mini;
 
+    // better approach - comparing adjacent elements
+    //  for(int i = 1; i < nums.size(); i++){
+    //      if(nums[i] < nums[i-1]){
+    //          return nums[i];
+    //      }
+    //  }
+    //  return nums[0];
+
+    // optimal approach - binary search
+    // After rotation:
+    //  One half is always sorted.
+    //  Minimum lies in the unsorted half.
+    int low = 0;
+    int high = nums.size() - 1;
+    int ans = INT_MAX;
+    while (low <= high) {
+        // already sorted
+        if (nums[low] <= nums[high]) {
+            ans = min(ans, nums[low]);
+            break;
+        }
+
+        int mid = low + (high - low) / 2;
+        // left half sorted
+        if (nums[low] <= nums[mid]) {
+            ans = min(ans, nums[low]);
+            low = mid + 1;
+        }
+        // right half sorted
+        else {
+            ans = min(ans, nums[mid]);
+            high = mid - 1;
+        }
+    }
+    return ans;
+}
 
 int main(){
     int a = 1;
