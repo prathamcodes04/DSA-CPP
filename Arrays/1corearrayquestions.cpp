@@ -114,6 +114,49 @@ int maxSubArray(vector<int>& nums) {
     return maxsum;
 }
 
+//maximum product subarray
+int maxProduct(vector<int>& nums) {
+    //bruteforce approach
+    // int maxsumarr = INT_MIN;
+    // for(int i = 0; i < nums.size(); i++){
+    //     for(int j = i; j < nums.size(); j++){
+    //         int product = 1;
+    //         for(int k = i; k <= j; k++){
+    //             product *= nums[k];
+    //         }
+    //         maxsumarr = max(maxsumarr, product);
+    //     }
+    // }
+    // return maxsumarr;
+
+    //better approach
+    // int maxsumarr = INT_MIN;
+    // for(int i = 0; i < nums.size(); i++){
+    //     int product = 1;
+    //     for(int j = i; j < nums.size(); j++){
+    //         product *= nums[j];
+    //         maxsumarr = max(maxsumarr, product);
+    //     }
+    // }
+    // return maxsumarr;
+
+    //optimal approach
+    int maxsumarr = nums[0];
+    int maxprod = nums[0];
+    int minprod = nums[0];
+    for(int i = 1; i < nums.size(); i++){
+        if(nums[i] < 0){
+            swap(maxprod, minprod);
+        }
+        maxprod = max(nums[i], maxprod * nums[i]);
+        minprod = min(nums[i], minprod * nums[i]);
+        maxsumarr = max(maxsumarr, maxprod);
+    }
+    return maxsumarr;
+}
+
+
+
 int main(){
     int a = 1;
     int b = 2;
