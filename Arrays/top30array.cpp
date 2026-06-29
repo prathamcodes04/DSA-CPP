@@ -125,11 +125,47 @@ void leftRotate(vector<int>& arr){
     // }
 }
 
+//right rotate array by k places
+void rightRotate(vector<int>& arr, int k){
+    //bruteforce - rotate array 1 step to the right, k times
+    // k = k % arr.size();
+    // while(k--){
+    //     int last = arr[arr.size()-1]; //saving last element
+    //     for(int i = arr.size() - 1; i > 0; i--){
+    //         arr[i] = arr[i-1];
+    //     }
+    //     arr[0] = last;.
+    // }
+    // for(int i = 0; i < arr.size(); i++){
+    //     cout << arr[i] << " ";
+    // }
+
+    //optimal - using inbuilt reverse method
+    int n = arr.size();
+    k = k % n;
+
+    //right rotate
+    // reverse(arr.begin(), arr.end());
+    // reverse(arr.begin(), arr.begin() + k);
+    // reverse(arr.begin() + k, arr.end());
+
+    //left rotate
+    reverse(arr.begin(), arr.begin() + k);
+    reverse(arr.begin() + k, arr.end());
+    reverse(arr.begin(), arr.end());
+
+    for(int i = 0; i < arr.size(); i++){
+        cout << arr[i] << " ";
+    }
+}
+
+
 int main(){
     vector<int> arr = {1,2,3,4,5,6};
-    leftRotate(arr);
+    int k = 3;
+    rightRotate(arr, k);
     // cout << removeDuplicates(arr);
-    // vector<int> arr = {1,2,3,4,5,6};
+    // vector<int> arr = {1,2,3,4,5};
     // cout << isSorted(arr);
     return 0;
 }
