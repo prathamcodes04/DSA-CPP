@@ -66,17 +66,46 @@ bool isSorted(vector<int>& arr){
     // return true;
 
     //optimal solution
-    for(int i = 1; i < arr.size(); i++){
-        if(arr[i] < arr[i-1]){
-            return false;
-        }
-    }
-    return true;
+    // for(int i = 1; i < arr.size(); i++){
+    //     if(arr[i] < arr[i-1]){
+    //         return false;
+    //     }
+    // }
+    // return true;
 }
 
+//remove duplicates from sorted array
+int removeDuplicates(vector<int>& arr){
+    //bruteforce - using set
+    // set<int>st;
+    // //inserting element into set
+    // for(int x: arr){
+    //     st.insert(x);
+    // }
+    // //copying back into array
+    // int index = 0;
+    // for(int x: st){
+    //     arr[index++] = x;
+    // }    
+    // return st.size();
+
+    //optimal solution - two pointer approach
+    // int i = 0;
+    // for(int j = i + 1; j < arr.size(); j++){
+    //     if(arr[j] != arr[i]){
+    //         arr[i+1] = arr[j];
+    //         i++;
+    //     }
+    // }
+    // return i+1;
+}
+
+//left rotate array by one
+
 int main(){
-    vector<int> arr = {2,5,1,3,0};
+    vector<int> arr = {1,1,2,3,4,5,6};
+    cout << removeDuplicates(arr);
     // vector<int> arr = {1,2,3,4,5,6};
-    cout << isSorted(arr);
+    // cout << isSorted(arr);
     return 0;
 }
