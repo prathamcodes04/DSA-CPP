@@ -39,22 +39,44 @@ int secondLargestElement(vector<int>& arr){
     // return slargest;
 
     //optimal solution using else if, one pass 
-    int largest = INT_MIN;
-    int slargest = INT_MIN;
-    for(int i = 0; i < arr.size(); i++){
-        if(arr[i] > largest){
-            slargest = largest;
-            largest = arr[i];
-        }
-        else if(arr[i] < largest && arr[i] > slargest){
-            slargest = arr[i];
+    // int largest = INT_MIN;
+    // int slargest = INT_MIN;
+    // for(int i = 0; i < arr.size(); i++){
+    //     if(arr[i] > largest){
+    //         slargest = largest;
+    //         largest = arr[i];
+    //     }
+    //     else if(arr[i] < largest && arr[i] > slargest){
+    //         slargest = arr[i];
+    //     }
+    // }
+    // return slargest;
+}
+
+//check if array is sorted
+bool isSorted(vector<int>& arr){
+    //bruteforce
+    // for(int i = 0; i < arr.size(); i++){
+    //     for(int j = i + 1; j < arr.size(); j++){
+    //         if(arr[j] < arr[i]){
+    //             return false;
+    //         }
+    //     }
+    // }
+    // return true;
+
+    //optimal solution
+    for(int i = 1; i < arr.size(); i++){
+        if(arr[i] < arr[i-1]){
+            return false;
         }
     }
-    return slargest;
+    return true;
 }
 
 int main(){
     vector<int> arr = {2,5,1,3,0};
-    cout << secondLargestElement(arr);
+    // vector<int> arr = {1,2,3,4,5,6};
+    cout << isSorted(arr);
     return 0;
 }
