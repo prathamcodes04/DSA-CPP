@@ -101,10 +101,34 @@ int removeDuplicates(vector<int>& arr){
 }
 
 //left rotate array by one
+void leftRotate(vector<int>& arr){
+    //brute force - using dummy array
+    // vector<int> temp(arr.size());
+    // for(int i = 1; i < arr.size(); i++){
+    //     temp[i - 1] = arr[i];
+    // }
+    // //placing 1 at last
+    // temp[arr.size() - 1] = arr[0];
+    // //printing array
+    // for(int i = 0 ; i < temp.size(); i++){
+    //     cout << temp[i] << " ";
+    // }
+
+    //optimal solution
+    // int temp = arr[0];
+    // for(int i = 1; i < arr.size(); i++){
+    //     arr[i - 1] = arr[i];
+    // }
+    // arr[arr.size() - 1] = temp;
+    // for(int i = 0; i < arr.size(); i++){
+    //     cout << arr[i] << " ";
+    // }
+}
 
 int main(){
-    vector<int> arr = {1,1,2,3,4,5,6};
-    cout << removeDuplicates(arr);
+    vector<int> arr = {1,2,3,4,5,6};
+    leftRotate(arr);
+    // cout << removeDuplicates(arr);
     // vector<int> arr = {1,2,3,4,5,6};
     // cout << isSorted(arr);
     return 0;
