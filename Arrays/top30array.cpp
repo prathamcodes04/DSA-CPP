@@ -8,13 +8,13 @@ int largestElement(vector<int>& arr){
     // return arr[arr.size() - 1];
 
     //optimal solution - traversing
-    int largest = arr[0];
-    for(int i = 0; i < arr.size(); i++){
-        if(arr[i] > largest){
-            largest = arr[i];
-        }
-    }
-    return largest;
+    // int largest = arr[0];
+    // for(int i = 0; i < arr.size(); i++){
+    //     if(arr[i] > largest){
+    //         largest = arr[i];
+    //     }
+    // }
+    // return largest;
 }
 
 int main(){
